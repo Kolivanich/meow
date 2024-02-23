@@ -1,0 +1,31 @@
+@startuml VIS_8
+skinparam actorStyle Hollow 
+actor Квартиросъемщик as cash
+actor Владелец as flat
+
+package "Информационная система жилищного агенства" {
+    usecase check as "Посмотреть объявления
+    об аренде жилья"
+    usecase add as "Разместить объявление
+    об аренде жилья"
+    usecase buy as "Снять
+..жилье..
+Сдать"
+    usecase del as "Удалить объявление
+    об аренде жилья"
+    usecase otzk as "Оставить отзыв
+    о квартиросъемщике"
+    usecase otzv as "Оставить отзыв
+    о владельце"
+}
+
+flat --> del
+flat --> add
+flat --> buy #line:red
+add .-> del
+cash --> check
+cash --> buy #blue
+check .-> buy 
+buy .-> otzv #blue : По желанию пользователя
+buy .-> otzk #line:red : По желанию пользователя
+@enduml
